@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vokkaliga Yuva Brigade | Global Youth Empowerment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-green: #1F7A3A;
+            --forest-green: #145A2A;
+            --leaf-green: #6FBF4B;
+            --gold: #D4AF37;
+            --warm-yellow: #F2C94C;
+            --maroon: #8B1E2D;
+            --off-white: #F5F5F5;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: white;
+            color: #1a1a1a;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .green-gradient {
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--primary-green) 100%);
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .card-hover {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-hidden {
+            display: none;
+        }
+
+        .mobile-menu-active {
+            display: flex !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--forest-green);
+            transform: scale(1.05);
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: white;
+        }
+
+        /* Impact Gallery Overlay */
+        .gallery-overlay {
+            background: linear-gradient(to top, #145a2ae6, transparent);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 10px;
+        }
+        .slider-inner { 
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+    </style>
+</head>
+<body class="bg-[#F5F5F5]">
+
+    <!-- Header Navigation -->
+    <header class="sticky-header">
+        <nav class="max-w-7xl mx-auto px-4 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                <div class="w-12 h-12 bg-[#1F7A3A] rounded-full flex items-center justify-center border-2 border-[#D4AF37] shadow-lg">
+                    <img src="images/Logo.png" alt="logo">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-heading text-lg md:text-xl leading-none text-[#145A2A] tracking-tight">VOKKALIGA YUVA BRIGADE</span>
+                    <span class="text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-[#B08D57] font-bold">Global Movement</span>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <ul class="hidden lg:flex space-x-8 text-[12px] font-bold uppercase tracking-wider text-[#145A2A]">
+                <li class="nav-link" onclick="navigateTo('home')">Home</li>
+                <li class="nav-link" onclick="navigateTo('about')">About Us</li>
+                <li class="nav-link" onclick="navigateTo('programs')">Our Programs</li>
+                <li class="nav-link" onclick="navigateTo('impact')">Our Impact in Action</li>
+                <li class="nav-link" onclick="navigateTo('leadership')">Leadership</li>
+                <li><button onclick="navigateTo('donate')" class="bg-[#1F7A3A] text-white px-6 py-2.5 rounded-full hover:bg-[#145A2A] transition-all shadow-md">Donate</button></li>
+            </ul>
+
+            <!-- Mobile Toggle -->
+            <button class="lg:hidden text-2xl text-[#145A2A]" id="menuToggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden absolute top-20 left-0 w-full bg-white flex-col items-center py-10 space-y-8 shadow-2xl border-b border-gray-100 font-bold uppercase tracking-widest text-sm text-[#145A2A]">
+            <span class="nav-link" onclick="navigateTo('home')">Home</span>
+            <span class="nav-link" onclick="navigateTo('about')">About Us</span>
+            <span class="nav-link" onclick="navigateTo('programs')">Our Programs</span>
+            <span class="nav-link" onclick="navigateTo('impact')">Our Impact</span>
+            <span class="nav-link" onclick="navigateTo('leadership')">Leadership</span>
+            <button onclick="navigateTo('donate')" class="bg-[#1F7A3A] text-white px-12 py-4 rounded-full shadow-lg">Donate</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- HOME PAGE -->
+        <div id="home" class="page-content">
+            <!-- Hero Section -->
+            <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden" style="background-color: #195d2e;">
+                <!-- Video/Image Background Placeholder -->
+                <div class="absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-[#145A2A]/80 z-10"></div>
+                    <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1523050853063-915894098232?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
+                </div>
+                
+                <div class="relative z-20 text-center px-4 max-w-5xl">
+                    <h1 class="text-4xl md:text-7xl text-white mb-6 leading-tight drop-shadow-md">
+                        Empowering Youth. <br><span class="text-[#F2C94C]">Transforming Futures</span> Globally.
+                    </h1>
+                    <p class="text-lg md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+                        A global initiative advancing education, employment, and entrepreneurship across communities.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                        <button onclick="navigateTo('programs')" class="w-full sm:w-auto px-10 py-5 bg-white text-[#145A2A] font-bold rounded-full hover:bg-[#F2C94C] transition-all shadow-xl">Our Programs</button>
+                        <button onclick="navigateTo('donate')" class="w-full sm:w-auto px-10 py-5 border-2 border-[#D4AF37] text-[#F2C94C] font-bold rounded-full hover:bg-[#D4AF37] hover:text-white transition-all">Donate Now</button>
+                    </div>
+                </div>
+                
+                <!-- Scroll Indicator -->
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce text-white/50">
+                    <i class="fa-solid fa-chevron-down text-2xl"></i>
+                </div>
+            </section>
+
+            <!-- Spiritual Guidance Section -->
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <span class="text-[#D4AF37] uppercase tracking-[0.4em] text-xs font-bold">Divine Blessings</span>
+                        <h2 class="text-3xl md:text-5xl font-heading mt-4 text-[#145A2A]">Spiritual Guidance</h2>
+                        <div class="h-1 w-24 bg-[#D4AF37] mx-auto mt-6 rounded-full"></div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16">
+                        <!-- Swamiji 1 -->
+                        <div class="bg-[#F5F5F5] p-8 md:p-12 rounded-[40px] flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-2xl border border-transparent hover:border-[#F2C94C]/20">
+
+                            <!-- <div class="w-48 h-48 bg-gray-200 rounded-full mb-8 flex items-center justify-center overflow-hidden border-4 border-[#D4AF37] shadow-inner">
+                                <i class="fa-solid fa-hands-praying text-5xl text-[#145A2A]"></i>
+                            </div> -->
+
+                            <img src="images/Balagangadharanatha Mahaswamiji.jpg" alt="Swamiji 1" class="w-48 h-48 rounded-full mb-8 object-cover border-4 border-[#D4AF37] shadow-inner">
+                            
+                            <h3 class="text-2xl font-heading text-[#145A2A] mb-2 leading-tight">Jagadguru Sri Sri Sri Dr. Balagangadharanatha Mahaswamiji</h3>
+                            <p class="text-[#8B1E2D] text-sm font-bold uppercase mb-6 tracking-wider">Recipient of Padma Bhushan | Revered Pontiff</p>
+                            <p class="text-gray-600 mb-8 font-light italic leading-relaxed">"A visionary spiritual leader who dedicated his life to seva, education, and social upliftment."</p>
+                            <span class="text-[#B08D57] font-semibold text-sm">With his divine grace and blessings</span>
+                        </div>
+
+                        <!-- Swamiji 2 -->
+                        <div class="bg-[#F5F5F5] p-8 md:p-12 rounded-[40px] flex flex-col items-center text-center transition-all hover:bg-white hover:shadow-2xl border border-transparent hover:border-[#F2C94C]/20">
+                            
+                            <img src="images/Jagadguru Sri Sri Sri Dr. Nirmalanandanatha Mahaswamiji.png" alt="Swamiji 1" class="w-48 h-48 rounded-full mb-8 object-cover border-4 border-[#D4AF37] shadow-inner">
+                            
+                            <h3 class="text-2xl font-heading text-[#145A2A] mb-2 leading-tight">Jagadguru Sri Sri Sri Dr. Nirmalanandanatha Mahaswamiji</h3>
+                            <p class="text-[#8B1E2D] text-sm font-bold uppercase mb-6 tracking-wider">Ph.D | Revered Pontiff of Sri Adichunchanagiri Math</p>
+                            <p class="text-gray-600 mb-8 font-light italic leading-relaxed">"A distinguished scholar holding a Doctor of Philosophy (Ph.D.) and recipient of multiple honorary doctorates."</p>
+                            <span class="text-[#B08D57] font-semibold text-sm">With his divine grace and blessings</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Global Presence -->
+            <section class="py-24 bg-[#145A2A] text-white overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1">
+                        <!-- Custom SVG Map Visual -->
+                        <div class="relative p-4 bg-white/5 rounded-3xl backdrop-blur-sm border border-white/10">
+                            <svg viewBox="0 0 800 400" class="w-full h-auto drop-shadow-2xl">
+                                <path d="M150,150 Q200,50 300,150 T450,250 T600,100" fill="none" stroke="#F2C94C" stroke-width="2" stroke-dasharray="8,4" />
+                                <circle cx="450" cy="250" r="10" fill="#F2C94C">
+                                    <animate attributeName="r" values="8;14;8" dur="3s" repeatCount="indefinite" />
+                                    <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+                                </circle>
+                                <text x="470" y="255" font-size="16" fill="#F2C94C" font-weight="bold">India</text>
+                                <text x="620" y="105" font-size="14" fill="#FFFFFF">Australia</text>
+                                <text x="100" y="145" font-size="12" fill="#FFFFFF" opacity="0.6">Global Reach</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <span class="text-[#F2C94C] uppercase tracking-[0.4em] text-xs font-bold">Bridging Worlds</span>
+                        <h2 class="text-4xl md:text-5xl font-heading mt-4 mb-8">Global Presence</h2>
+                        <p class="text-gray-300 text-xl mb-10 font-light leading-relaxed italic">
+                            Building impact across continents through community-driven initiatives.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="flex items-center space-x-4 bg-white/5 p-5 rounded-2xl">
+                                <i class="fa-solid fa-location-dot text-[#F2C94C] text-2xl"></i>
+                                <span class="font-semibold">India Hub</span>
+                            </div>
+                            <div class="flex items-center space-x-4 bg-white/5 p-5 rounded-2xl">
+                                <i class="fa-solid fa-globe text-[#F2C94C] text-2xl"></i>
+                                <span class="font-semibold">Australia Network</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <!-- Impact Stats -->
+            <section class="py-16 bg-[#F2C94C]">
+                <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-12 text-center text-[#145a2a]">
+                    <div style="border-bottom: 5px solid #145A2A;" class="bg-white p-8 text-center rounded-xl shadow-sm counter-card card-hover">
+                            <i class="fas fa-earth-africa text-3xl text-primaryGreen mb-4"></i>
+                            <div class="text-3xl font-extrabold text-forestGreen mb-1">32+</div>
+                            <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Nations Active</div>
+                        </div>
+                        <div style="border-bottom: 5px solid #145A2A;" class="bg-white p-8 text-center rounded-xl shadow-sm counter-card card-hover">
+                            <i class="fas fa-user-graduate text-3xl text-primaryGreen mb-4"></i>
+                            <div class="text-3xl font-extrabold text-forestGreen mb-1">5,000+</div>
+                            <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Pathways Guided</div>
+                        </div>
+                        <div style="border-bottom: 5px solid #145A2A;" class="bg-white p-8 text-center rounded-xl shadow-sm counter-card card-hover">
+                            <i class="fas fa-briefcase text-3xl text-primaryGreen mb-4"></i>
+                            <div class="text-3xl font-extrabold text-forestGreen mb-1">5,300+</div>
+                            <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Career Placements</div>
+                        </div>
+                        <div style="border-bottom: 5px solid #145A2A;" class="bg-white p-8 text-center rounded-xl shadow-sm counter-card card-hover">
+                            <i class="fas fa-school text-3xl text-primaryGreen mb-4"></i>
+                            <div class="text-3xl font-extrabold text-forestGreen mb-1">23</div>
+                            <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Adopted Institutions</div>
+                        </div>
+                        <div style="border-bottom: 5px solid #145A2A;" class="bg-white p-8 text-center rounded-xl shadow-sm counter-card card-hover">
+                            <i class="fas fa-rocket text-3xl text-primaryGreen mb-4"></i>
+                            <div class="text-3xl font-extrabold text-forestGreen mb-1">71</div>
+                            <div class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Startups Launched</div>
+                        </div>
+                </div>
+            </section>
+
+            <!-- Cultural Section -->
+            <section class="py-24 bg-white relative overflow-hidden">
+                <div class="max-w-4xl mx-auto px-6 text-center">
+                    <h2 class="text-3xl md:text-5xl font-heading text-[#145A2A] mb-10">Rooted in Heritage, <br>Driven by Global Vision</h2>
+                    <p class="text-gray-600 text-xl leading-relaxed font-light mb-12">
+                        Balanced messaging: Our core values provide the stability, while our global reach provides the opportunity. We believe in empowering youth with the tools of the modern world while keeping them anchored in their cultural identity.
+                    </p>
+                    <div class="flex justify-center gap-4">
+                        <div class="h-1 w-12 bg-[#1F7A3A] rounded-full"></div>
+                        <div class="h-1 w-12 bg-[#D4AF37] rounded-full"></div>
+                        <div class="h-1 w-12 bg-[#8B1E2D] rounded-full"></div>
+                    </div>
+                </div>
+                <!-- Artistic Silhouette Decor -->
+                <div class="absolute bottom-0 left-0 opacity-5 pointer-events-none">
+                    <i class="fa-solid fa-wheat-awn text-[200px] text-[#145A2A]"></i>
+                </div>
+            </section>
+        </div>
+
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page-content section-hidden">
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+                        <div>
+                            <span class="text-[#D4AF37] font-bold uppercase tracking-widest text-xs">Our Identity</span>
+                            <h1 class="text-4xl md:text-6xl font-heading text-[#145A2A] mt-4 mb-8">Who We Are</h1>
+                            <p class="text-xl text-gray-600 leading-relaxed font-light">
+                                Vokkaliga Yuva Brigade is a youth-driven platform focused on education, employment, and leadership development. We function as a structured global movement dedicated to building self-reliant individuals.
+                            </p>
+                        </div>
+                        <div class="bg-[#145A2A] p-12 rounded-[50px] shadow-2xl relative">
+                            <div class="absolute top-6 left-6 text-[#F2C94C]/20 text-8xl font-heading">“</div>
+                            <p class="text-white text-2xl font-light italic relative z-10 leading-relaxed">
+                                We are committed to enabling individuals to grow with dignity, purpose, and opportunity.
+                            </p>
+                            <div class="mt-8 flex items-center gap-4">
+                                <div class="h-px flex-1 bg-white/20"></div>
+                                <span class="text-[#F2C94C] font-bold text-xs uppercase tracking-widest">Our Commitment</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="p-10 rounded-[40px] bg-[#F5F5F5] border border-gray-100 card-hover">
+                            <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#1F7A3A] text-2xl mb-6 shadow-sm"><i class="fa-solid fa-user-graduate"></i></div>
+                            <h3 class="text-xl font-bold mb-4 text-[#145A2A]">Who We Serve</h3>
+                            <ul class="space-y-3 text-gray-600 font-light">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#6FBF4B]"></i> Students</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#6FBF4B]"></i> Job Seekers</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#6FBF4B]"></i> Aspiring Entrepreneurs</li>
+                            </ul>
+                        </div>
+                        <div class="p-10 rounded-[40px] bg-[#F5F5F5] border border-gray-100 card-hover">
+                            <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#1F7A3A] text-2xl mb-6 shadow-sm"><i class="fa-solid fa-microscope"></i></div>
+                            <h3 class="text-xl font-bold mb-4 text-[#145A2A]">Our Approach</h3>
+                            <ul class="space-y-3 text-gray-600 font-light">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#6FBF4B]"></i> Mentorship-driven</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#6FBF4B]"></i> Community-based</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#6FBF4B]"></i> Impact-oriented</li>
+                            </ul>
+                        </div>
+                        <div class="p-10 rounded-[40px] bg-[#F5F5F5] border border-gray-100 card-hover">
+                            <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#1F7A3A] text-2xl mb-6 shadow-sm"><i class="fa-solid fa-seedling"></i></div>
+                            <h3 class="text-xl font-bold mb-4 text-[#145A2A]">Our Values</h3>
+                            <p class="text-gray-600 font-light leading-relaxed">
+                                Anchored in integrity and disciplined action, we foster a culture of excellence and mutual support across all global chapters.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PROGRAMS PAGE -->
+        <div id="programs" class="page-content section-hidden">
+            <section class="py-24 bg-[#F5F5F5]">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-20">
+                        <h1 class="text-4xl md:text-6xl font-heading text-[#145A2A] mb-6">Our Programs</h1>
+                        <p class="text-gray-500 max-w-2xl mx-auto text-lg font-light">Structured initiatives designed to empower the youth for global challenges.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Program 1 -->
+                        <div class="bg-white p-10 rounded-[40px] shadow-sm flex gap-8 items-start card-hover border-l-8 border-[#1F7A3A]">
+                            <div class="hidden sm:flex w-20 h-20 bg-[#F5F5F5] rounded-3xl items-center justify-center text-3xl text-[#1F7A3A] shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#145A2A] mb-4">Competitive Exam & Higher Education Mentorship</h3>
+                                <p class="text-gray-600 font-light leading-relaxed">Comprehensive guidance for students aspiring for top-tier national and international academic opportunities.</p>
+                            </div>
+                        </div>
+                        <!-- Program 2 -->
+                        <div class="bg-white p-10 rounded-[40px] shadow-sm flex gap-8 items-start card-hover border-l-8 border-[#D4AF37]">
+                            <div class="hidden sm:flex w-20 h-20 bg-[#F5F5F5] rounded-3xl items-center justify-center text-3xl text-[#D4AF37] shrink-0"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#145A2A] mb-4">Career Readiness</h3>
+                                <p class="text-gray-600 font-light leading-relaxed">Bridge the gap between campus and corporate with professional networking and industry-specific training.</p>
+                            </div>
+                        </div>
+                        <!-- Program 3 -->
+                        <div class="bg-white p-10 rounded-[40px] shadow-sm flex gap-8 items-start card-hover border-l-8 border-[#6FBF4B]">
+                            <div class="hidden sm:flex w-20 h-20 bg-[#F5F5F5] rounded-3xl items-center justify-center text-3xl text-[#6FBF4B] shrink-0"><i class="fa-solid fa-laptop-code"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#145A2A] mb-4">Skill Development</h3>
+                                <p class="text-gray-600 font-light leading-relaxed">Technical and vocational skills aligned with the global digital economy and modern industrial requirements.</p>
+                            </div>
+                        </div>
+                        <!-- Program 4 -->
+                        <div class="bg-white p-10 rounded-[40px] shadow-sm flex gap-8 items-start card-hover border-l-8 border-[#8B1E2D]">
+                            <div class="hidden sm:flex w-20 h-20 bg-[#F5F5F5] rounded-3xl items-center justify-center text-3xl text-[#8B1E2D] shrink-0"><i class="fa-solid fa-shield-heart"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-[#145A2A] mb-4">Youth Leadership</h3>
+                                <p class="text-gray-600 font-light leading-relaxed">Developing ethical leadership qualities, social responsibility, and a commitment to community transformation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program CTA -->
+                    <div class="mt-20 bg-[#145A2A] rounded-[50px] p-12 text-center text-white relative overflow-hidden">
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-heading mb-6">Support Our Global Initiatives</h3>
+                            <p class="text-white/70 max-w-2xl mx-auto mb-10 text-lg">Your support helps us reach more students and provide world-class resources to those who need it most.</p>
+                            <button onclick="navigateTo('donate')" class="bg-[#F2C94C] text-[#145A2A] px-12 py-5 rounded-full font-bold text-lg hover:bg-white transition-all shadow-xl">Join the Movement</button>
+                        </div>
+                        <!-- Decorative bg -->
+                        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')]"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- IMPACT PAGE -->
+        <div id="impact" class="page-content section-hidden">
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-20">
+                        <h1 class="text-4xl md:text-6xl font-heading text-[#145A2A] mb-6 uppercase tracking-tight">Our Impact in Action</h1>
+                        <p class="text-gray-500 max-w-4xl mx-auto text-xl font-light leading-relaxed">
+                            “Explore our work across communities and countries through moments that reflect real impact, engagement, and transformation.”
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- International Gallery -->
+                        <div class="group relative h-[500px] rounded-[50px] overflow-hidden cursor-pointer shadow-2xl" onclick="navigateTo('internationalGallery')">
+                            <div class="absolute inset-0 bg-[#145A2A] transition-all duration-700 group-hover:scale-110">
+                                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80" alt="International" class="w-full h-full object-cover opacity-60">
+                            </div>
+                            <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-12 text-white">
+                                <div class="w-16 h-1 bg-[#F2C94C] mb-6 transition-all duration-500 group-hover:w-32"></div>
+                                <h3 class="text-3xl font-heading mb-2">International Engagements</h3>
+                                <p class="text-white/70 font-light mb-6">Our footprint across Australia, Middle East, and the USA.</p>
+                                <div class="flex items-center gap-3 text-[#F2C94C] font-bold">
+                                    <span>EXPLORE GALLERY</span>
+                                    <i class="fa-solid fa-circle-arrow-right text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Gallery -->
+                        <div class="group relative h-[500px] rounded-[50px] overflow-hidden cursor-pointer shadow-2xl" onclick="navigateTo('socialGallery')">
+                            <div class="absolute inset-0 bg-[#145A2A] transition-all duration-700 group-hover:scale-110">
+                                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80" alt="Social" class="w-full h-full object-cover opacity-60">
+                            </div>
+                            <div class="absolute inset-0 gallery-overlay flex flex-col justify-end p-12 text-white">
+                                <div class="w-16 h-1 bg-[#6FBF4B] mb-6 transition-all duration-500 group-hover:w-32"></div>
+                                <h3 class="text-3xl font-heading mb-2">Social Engagements</h3>
+                                <p class="text-white/70 font-light mb-6">Local community drives, student aid, and rural development.</p>
+                                <div class="flex items-center gap-3 text-[#6FBF4B] font-bold">
+                                    <span>EXPLORE GALLERY</span>
+                                    <i class="fa-solid fa-circle-arrow-right text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action -->
+                    <div class="mt-20 text-center">
+                        <button onclick="navigateTo('donate')" class="px-10 py-5 bg-[#1F7A3A] text-white font-bold rounded-full hover:shadow-2xl transition-all flex items-center gap-3 mx-auto">
+                            Support Our Ongoing Projects <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- International Gallery Page -->
+        <div id="internationalGallery" class="page-content section-hidden">
+            <div class="p-10 max-w-7xl mx-auto">
+                <button onclick="navigateTo('impact')" class="mb-6 px-6 py-2 bg-black hover:bg-gray-800 text-white rounded-lg flex items-center gap-2 transition">
+                    <i class="fas fa-arrow-left"></i> Back to Impact
+                </button>
+                
+                <div class="grid lg:grid-cols-3 gap-10">
+                    <!-- Slider Section -->
+                    <div class="lg:col-span-2">
+                        <h2 class="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-green-700 pl-4">International Gallery</h2>
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-white border border-gray-200">
+                            <div id="internationalSlider" class="flex slider-inner h-[500px]">
+                                <!-- Images injected by JS -->
+                            </div>
+                            <!-- Navigation Controls -->
+                            <button onclick="prevSlide('international')" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg z-10 transition">
+                                <i class="fas fa-chevron-left text-gray-800"></i>
+                            </button>
+                            <button onclick="nextSlide('international')" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg z-10 transition">
+                                <i class="fas fa-chevron-right text-gray-800"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PDF Section -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                        <h3 class="font-bold text-xl mb-4 flex items-center gap-2">
+                            <i class="fas fa-file-pdf text-red-500"></i> Impact Report
+                        </h3>
+                       <h4 class="text-lg font-semibold text-gray-800 mb-4">Brigade Service Report from 21.12.2025</h4>
+                            <a href="files/Brigade Service Report from 21.12.2025.pdf" target="_blank" class="mt-4 inline-block px-4 py-2 bg-[#1F7A3A] text-white rounded-lg hover:bg-[#145A2A] transition">
+                                View PDF
+                            </a>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4">Brigade Service Report from 21.12.2025</h4>
+                            <a href="files/Brigade Service Report from 21.12.2025.pdf" target="_blank" class="mt-4 inline-block px-4 py-2 bg-[#1F7A3A] text-white rounded-lg hover:bg-[#145A2A] transition">
+                                View PDF
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Gallery Page -->
+        <div id="socialGallery" class="page-content section-hidden">
+            <div class="p-10 max-w-7xl mx-auto">
+                <button onclick="navigateTo('impact')" class="mb-6 px-6 py-2 bg-black hover:bg-gray-800 text-white rounded-lg flex items-center gap-2 transition">
+                    <i class="fas fa-arrow-left"></i> Back to Impact
+                </button>
+                
+                <div class="grid lg:grid-cols-3 gap-10">
+                    <!-- Slider Section -->
+                    <div class="lg:col-span-2">
+                        <h2 class="text-3xl font-bold mb-6 text-gray-800 border-l-4 border-green-500 pl-4">Social Gallery</h2>
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl bg-white border border-gray-200">
+                            <div id="socialSlider" class="flex slider-inner h-[500px]">
+                                <!-- Images injected by JS -->
+                            </div>
+                            <button onclick="prevSlide('social')" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg z-10 transition">
+                                <i class="fas fa-chevron-left text-gray-800"></i>
+                            </button>
+                            <button onclick="nextSlide('social')" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg z-10 transition">
+                                <i class="fas fa-chevron-right text-gray-800"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PDF Section -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                        <h3 class="font-bold text-xl mb-4 flex items-center gap-2">
+                            <i class="fas fa-file-pdf text-red-500"></i> Engagement Summary
+                        </h3>
+                        <div class="rounded-xl overflow-hidden border border-gray-100">
+                            
+
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4">Brigade Service Report from 21.12.2025</h4>
+                            <a href="files/Brigade Service Report from 21.12.2025.pdf" target="_blank" class="mt-4 inline-block px-4 py-2 bg-[#1F7A3A] text-white rounded-lg hover:bg-[#145A2A] transition">
+                                View PDF
+                            </a>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4">Brigade Service Report from 21.12.2025</h4>
+                            <a href="files/Brigade Service Report from 21.12.2025.pdf" target="_blank" class="mt-4 inline-block px-4 py-2 bg-[#1F7A3A] text-white rounded-lg hover:bg-[#145A2A] transition">
+                                View PDF
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEADERSHIP PAGE -->
+        <div id="leadership" class="page-content section-hidden">
+            <section class="py-24 bg-[#F5F5F5]">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-24">
+                        <h1 class="text-4xl md:text-6xl font-heading text-[#145A2A] mb-6">Our Leadership</h1>
+                        <p class="text-gray-500 italic max-w-3xl mx-auto text-xl font-light">
+                            “Our mission is to create self-reliant youth who contribute meaningfully to society, regardless of geography.”
+                        </p>
+                    </div>
+
+                    <!-- Key Leaders Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Swamiji A -->
+                        <div class="bg-white p-8 rounded-[40px] shadow-sm text-center border-t-4 border-[#D4AF37] card-hover">
+                            <div class="w-24 h-24 bg-[#F5F5F5] rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-[#145A2A]"><i class="fa-solid fa-hands-praying"></i></div>
+                            <h3 class="font-bold text-lg text-[#145A2A] mb-2">Dr. Balagangadharanatha Mahaswamiji</h3>
+                            <p class="text-[10px] font-bold text-[#8B1E2D] mb-4 uppercase tracking-widest">Divine Blessings</p>
+                            <p class="text-xs text-gray-500 leading-relaxed">Visionary spiritual leader dedicated to seva and education.</p>
+                        </div>
+                        <!-- Swamiji B -->
+                        <div class="bg-white p-8 rounded-[40px] shadow-sm text-center border-t-4 border-[#D4AF37] card-hover">
+                            <div class="w-24 h-24 bg-[#F5F5F5] rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-[#145A2A]"><i class="fa-solid fa-sun"></i></div>
+                            <h3 class="font-bold text-lg text-[#145A2A] mb-2">Dr. Nirmalanandanatha Mahaswamiji</h3>
+                            <p class="text-[10px] font-bold text-[#8B1E2D] mb-4 uppercase tracking-widest">Divine Blessings</p>
+                            <p class="text-xs text-gray-500 leading-relaxed">Distinguished Ph.D scholar leading the Adichunchanagiri Math.</p>
+                        </div>
+                        <!-- Founder -->
+                        <div class="bg-white p-8 rounded-[40px] shadow-sm text-center border-t-4 border-[#1F7A3A] card-hover">
+                            <div class="w-24 h-24 bg-[#F5F5F5] rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-[#1F7A3A]"><i class="fa-solid fa-user-shield"></i></div>
+                            <h3 class="font-bold text-lg text-[#145A2A] mb-2">Shri. Nanjegowda Nanjunda</h3>
+                            <p class="text-[10px] font-bold text-[#1F7A3A] mb-4 uppercase tracking-widest">Founder President</p>
+                            <p class="text-xs text-gray-500 leading-relaxed">The driving force behind the brigade's initial structure.</p>
+                        </div>
+                        <!-- Global Lead -->
+                        <div class="bg-white p-8 rounded-[40px] shadow-sm text-center border-t-4 border-[#1F7A3A] card-hover">
+                            <div class="w-24 h-24 bg-[#F5F5F5] rounded-full mx-auto mb-6 flex items-center justify-center text-3xl text-[#1F7A3A]"><i class="fa-solid fa-globe"></i></div>
+                            <h3 class="font-bold text-lg text-[#145A2A] mb-2">Kavitha Gowda</h3>
+                            <p class="text-[10px] font-bold text-[#1F7A3A] mb-4 uppercase tracking-widest">Global Lead</p>
+                            <p class="text-xs text-gray-500 leading-relaxed">Orchestrating the international outreach and chapter coordination.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- DONATE PAGE -->
+        <div id="donate" class="page-content section-hidden">
+            <section class="py-24 bg-white">
+                <div class="max-w-5xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <span class="text-[#D4AF37] uppercase tracking-[0.4em] text-xs font-bold">Contribution for Change</span>
+                        <h1 class="text-4xl md:text-6xl font-heading text-[#145A2A] mt-4 mb-6">Donate</h1>
+                        <p class="text-gray-500 text-lg font-light">Global impact platform – Transparent, Trustworthy, Impact-driven.</p>
+                    </div>
+
+                    <div class="bg-[#F5F5F5] rounded-[60px] p-8 md:p-16 border border-gray-100 shadow-2xl">
+                        <div class="grid lg:grid-cols-2 gap-16 items-start">
+                            
+                            <!-- QR Section -->
+                            <div class="text-center lg:border-r border-gray-200 lg:pr-16">
+                                <h3 class="text-xl font-bold text-[#145A2A] mb-8 uppercase tracking-widest">UPI Payment</h3>
+                                <div class="bg-white p-6 rounded-[40px] inline-block shadow-lg border-2 border-[#D4AF37]/20 relative group">
+                                    <!-- Placeholder QR -->
+                                    <div class="w-56 h-56 flex items-center justify-center border-2 border-dashed border-[#145A2A]/10 rounded-3xl overflow-hidden relative">
+                                        <i class="fa-solid fa-qrcode text-8xl text-[#145A2A]/5"></i>
+                                        <div class="absolute inset-0 flex items-center justify-center p-4">
+                                            <img src="images/QR-Code.jpeg" alt="UPI QR Code" class="w-full h-full object-cover rounded-3xl  transition-opacity">   
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-8 flex flex-col items-center">
+                                    <div class="bg-white px-6 py-4 rounded-2xl flex items-center gap-4 shadow-sm border border-gray-200">
+                                        <span class="font-bold text-[#145A2A]" id="upiId">vokkaligayuva@idfcbank</span>
+                                        <button onclick="copyToClipboard('upiId')" class="bg-[#D4AF37] text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-[#145A2A] transition-all">COPY ID</button>
+                                    </div>
+                                    <p class="mt-6 text-[10px] text-gray-400 font-bold uppercase tracking-widest">Scan QR or use ID to donate via any UPI App</p>
+                                </div>
+                            </div>
+
+                            <!-- Bank Transfer -->
+                            <div>
+                                <h3 class="text-xl font-bold text-[#145A2A] mb-8 uppercase tracking-widest text-center lg:text-left">Bank Transfer</h3>
+                                <div class="space-y-6">
+                                    <div class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-md transition-shadow">
+                                        <label class="block text-[10px] text-[#B08D57] font-bold uppercase mb-1">Account Name</label>
+                                        <p class="font-bold text-lg text-[#145A2A]">Vokkaliga Yuva Brigade Trust</p>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-3xl shadow-sm">
+                                        <label class="block text-[10px] text-[#B08D57] font-bold uppercase mb-1">Account Number</label>
+                                        <p class="font-bold text-lg tracking-[0.2em] text-[#145A2A]">10262388646</p>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-white p-6 rounded-3xl shadow-sm">
+                                            <label class="block text-[10px] text-[#B08D57] font-bold uppercase mb-1">IFSC Code</label>
+                                            <p class="font-bold text-[#145A2A]">IDFB0081176</p>
+                                        </div>
+                                        <div class="bg-white p-6 rounded-3xl shadow-sm">
+                                            <label class="block text-[10px] text-[#B08D57] font-bold uppercase mb-1">Bank Name</label>
+                                            <p class="font-bold text-[#145A2A]">Bengaluru - Kengeri Satellite Town Branch</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-16 p-10 bg-white/50 rounded-[40px] border-2 border-dashed border-[#145A2A]/10 text-center">
+                            <h4 class="font-bold text-lg text-[#145A2A] mb-2">After donating, please share your details</h4>
+                            <p class="text-gray-500 text-sm mb-8 font-light italic">Help us send your acknowledgment and impact updates.</p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button class="bg-[#145A2A] text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-xl flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-list-check"></i> Fill Submission Form
+                                </button>
+                                <button class="border border-[#145A2A] text-[#145A2A] px-8 py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-paper-plane"></i> Email Receipt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-20 text-center max-w-3xl mx-auto">
+                        <p class="text-gray-600 text-2xl font-light italic mb-8">
+                            “Every contribution—big or small—helps shape a future of opportunity, dignity, and growth.”
+                        </p>
+                        <div class="h-12 w-px bg-[#D4AF37] mx-auto mb-8"></div>
+                        <i class="fa-solid fa-clover text-[#6FBF4B] text-4xl"></i>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[100] p-4" onclick="closeLightbox()">
+        <span class="absolute top-5 right-5 text-white text-4xl cursor-pointer hover:text-gray-300 transition">&times;</span>
+        <img id="lightboxImg" class="max-w-full max-h-full rounded shadow-2xl" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#145A2A] text-white pt-24 pb-12 overflow-hidden relative">
+        <!-- Abstract Decor -->
+        <div class="absolute bottom-0 right-0 opacity-10 pointer-events-none translate-x-1/4 translate-y-1/4">
+            <i class="fa-solid fa-leaf text-[400px]"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 lg:col-span-2">
+                    <div class="flex items-center space-x-4 mb-8">
+                        <div class="w-14 h-14 bg-[#1F7A3A] rounded-full flex items-center justify-center border-2 border-[#D4AF37]">
+                            <span class="font-bold text-2xl">V</span>
+                        </div>
+                        <div>
+                            <span class="font-heading text-xl block">VOKKALIGA YUVA BRIGADE</span>
+                            <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-widest">Global Outreach Chapter</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-sm text-lg font-light leading-relaxed mb-8">
+                        Rooted in tradition, empowered for the world. We are a youth movement focused on sustainable community transformation.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/vokkaligayuvabrigade/" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#D4AF37] transition-all"><i class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61585890613006" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#1F7A3A] transition-all"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                        <a href="https://www.youtube.com/@vokkaligayuvabrigade" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#8B1E2D] transition-all"><i class="fa-brands fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-heading text-[#D4AF37] uppercase tracking-widest text-sm mb-8">Explore</h4>
+                    <ul class="space-y-4 text-gray-400 font-light">
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigateTo('home')">Home</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigateTo('about')">Who We Are</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigateTo('programs')">Our Programs</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigateTo('impact')">Recent Impact</li>
+                        <li class="hover:text-white cursor-pointer transition-colors" onclick="navigateTo('donate')">Donate Now</li>
+                    </ul>
+                </div>
+
+                <div style="padding-right: 30px; overflow-wrap: anywhere;">
+                    <h4 class="font-heading text-[#D4AF37] uppercase tracking-widest text-sm mb-8">Contact Info</h4>
+                    <div class="space-y-6 text-gray-400 font-light">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-location-dot mt-1 text-[#6FBF4B]"></i>
+                            <span>International HQ: <br>Bengaluru - Australia - Global Chapters</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope mt-1 text-[#6FBF4B]"></i>
+                            <span>contact@vokkaligayuvabrigade.org</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-12 text-center">
+                <p class="text-xs uppercase tracking-[0.3em] text-[#ffffff]">&copy; 2024 VOKKALIGA YUVA BRIGADE. ALL RIGHTS RESERVED.</p>
+                <div class="mt-4 flex justify-center gap-6 text-[10px] text-gray-600 font-bold">
+                    <span class="text-[#ffffff]">PRIVACY POLICY</span>
+                    <button id="openBtn" class="text-[#ffffff]">TERMS OF SERVICE</button>
+                    <span class="text-[#ffffff]">GLOBAL COMPLIANCE</span>
+                    
+
+                    <dialog id="myPopup" style="padding: 30px; border: 3px solid #ffffff; background-color: #61c17f; color: #ffffff;">
+                    <h1 class="text-[18px]">Terms and Conditions<br><br></h1>
+                    <p style="text-align: left;">1. Introduction<br>
+                    By accessing or using this website, you agree to comply with and be bound by these Terms & Conditions. This platform operates as a global youth empowerment initiative, providing educational resources, mentorship, and community programs.<br><br>
+                    2. Eligibility<br>
+                    Minimum Age: You must be at least 13 years old to use this website.<br>
+                    Minor Supervision: Users under 18 must use this platform under the guidance of a parent or legal guardian.<br><br>
+                    3. Use of Website<br>
+                    You agree to use this website only for lawful purposes. You are prohibited from:<br>
+                    Violating local or international laws.<br>
+                    Distributing harmful or misleading content.<br>
+                    Attempting unauthorized access to our servers or user databases.<br><br>
+                    4. Donations & Financial Contributions<br>
+                    If you contribute to our cause through our donation page:<br>
+                    Voluntary Nature: All donations are voluntary and non-refundable unless otherwise required by law.<br>
+                    Allocation: Funds are used at the discretion of the organization to support programs and operational costs.<br>
+                    Recurring Donations: If you opt for monthly giving, you may cancel at any time through your donor portal or by contacting [Insert Email].<br>
+                    Tax Status: Please consult your local tax advisor regarding the deductibility of your contribution. We will provide a receipt via email for all transactions.<br>
+                    5. Intellectual Property<br><br>
+                    All content—including text, graphics, and logos—is the property of [Organization Name].<br>
+                    Permitted Use: You may share links to our content for personal, non-commercial awareness.<br>
+                    Prohibited Use: You may not scrape, reproduce, or sell our materials without express written consent.<br><br>
+                    6. Limitation of Liability<br>
+                    To the fullest extent permitted by law, [Organization Name] shall not be liable for any direct, indirect, or consequential damages arising from your use of the platform or participation in our programs.<br><br>
+</p>
+
+                    
+                    <button id="closeBtn" class="bg-[#1F7A3A] text-white text-[13px] px-10 py-2.5 rounded-full hover:bg-[#145A2A] transition-all shadow-md">I Agree</button>
+                    </dialog>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+
+    <!-- Feedback Toast -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-[#145A2A] text-white px-8 py-4 rounded-full font-bold shadow-2xl opacity-0 translate-y-10 transition-all duration-300 pointer-events-none z-[100]">
+        Copied to clipboard
+    </div>
+
+    <script>
+
+        // Popup Logic
+
+        const dialog = document.getElementById('myPopup');
+        document.getElementById('openBtn').onclick = () => dialog.showModal();
+        document.getElementById('closeBtn').onclick = () => dialog.close();
+
+
+        // Navigation Logic
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.add('section-hidden');
+            });
+            // Show requested page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('section-hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            // Close mobile menu
+            document.getElementById('mobileMenu').classList.remove('mobile-menu-active');
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('mobile-menu-active');
+        });
+
+        // Copy Clipboard Function
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            // Show Toast
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            toast.style.transform = 'translate(-50%, 0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 40px)';
+            }, 3000);
+        }
+
+        // Mock Gallery Logic
+        function toggleGallery(type) {
+            const toast = document.getElementById('toast');
+            toast.innerText = `Opening ${type.charAt(0).toUpperCase() + type.slice(1)} Gallery...`;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translate(-50%, 0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 40px)';
+                toast.innerText = 'Copied to clipboard'; // Reset text
+            }, 3000);
+        }
+
+        // Sticky Header Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-xl');
+                header.style.padding = '5px 0';
+            } else {
+                header.classList.remove('shadow-xl');
+                header.style.padding = '0';
+            }
+        });
+
+        // NAVIGATION
+        function navigateTo(id) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('section-hidden'));
+            document.getElementById(id).classList.remove('section-hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // SLIDER DATA
+        const sliders = {
+            international: {
+                index: 0,
+                images: [
+                    "images/InternationalImageGallery/01.jpeg",
+                    "images/InternationalImageGallery/02.jpeg",
+                    "images/InternationalImageGallery/03.jpeg"
+                ]
+            },
+            social: {
+                index: 0,
+                images: [
+                    "images/SocialImageGallery/01.jpeg",
+                    "images/SocialImageGallery/02.jpeg",
+                    "images/SocialImageGallery/03.jpeg"
+                ]
+            }
+        };
+
+        // RENDER SLIDERS
+        // RENDER SLIDERS - FIXED VERSION
+        function renderSlider(type) {
+            const slider = document.getElementById(type + "Slider");
+            slider.innerHTML = "";
+            
+            sliders[type].images.forEach(src => {
+                const div = document.createElement("div");
+                div.className = "min-w-full h-[500px] p-2 flex-shrink-0 flex items-center justify-center"; // Fixed height container
+                
+                const imgWrapper = document.createElement("div");
+                imgWrapper.className = "w-full h-full bg-gray-200 rounded-xl overflow-hidden cursor-pointer hover:brightness-110 transition-all duration-300 shadow-lg";
+                imgWrapper.onclick = () => openLightbox(src);
+                
+                const img = document.createElement("img");
+                img.src = src;
+                img.className = "w-full h-full object-cover"; // Fixed: object-cover ensures consistent aspect ratio
+                
+                imgWrapper.appendChild(img);
+                div.appendChild(imgWrapper);
+                slider.appendChild(div);
+            });
+            updateSlide(type);
+        }
+
+        // SLIDE LOGIC
+        function nextSlide(type) {
+            sliders[type].index = (sliders[type].index + 1) % sliders[type].images.length;
+            updateSlide(type);
+        }
+
+        function prevSlide(type) {
+            sliders[type].index = (sliders[type].index - 1 + sliders[type].images.length) % sliders[type].images.length;
+            updateSlide(type);
+        }
+
+        function updateSlide(type) {
+            const slider = document.getElementById(type + "Slider");
+            slider.style.transform = `translateX(-${sliders[type].index * 100}%)`;
+        }
+
+        function autoPlay(type) {
+            setInterval(() => nextSlide(type), 5000);
+        }
+
+        // LIGHTBOX
+        function openLightbox(src) {
+            const lightbox = document.getElementById("lightbox");
+            document.getElementById("lightboxImg").src = src;
+            lightbox.classList.remove("hidden");
+            lightbox.classList.add("flex");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById("lightbox");
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+            document.body.style.overflow = "auto";
+        }
+
+        // INITIALIZE
+        window.onload = () => {
+            renderSlider('international');
+            renderSlider('social');
+            autoPlay('international');
+            autoPlay('social');
+
+            // Keyboard listeners
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        };
+    </script>
+</body>
+</html>
