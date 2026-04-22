@@ -81,9 +81,7 @@
                 </div>
                 
                 <!-- Scroll Indicator -->
-                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce text-white-50">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
+                
             </section>
 
             <!-- Spiritual Guidance Section -->
@@ -480,7 +478,7 @@
                         
                         <!-- Founder -->
                         <div class="bg-white p-8 rounded-40px shadow-sm text-center border-t-4 border-primary card-hover">
-                            <div class="w-48 h-48 bg-offwhite rounded-full mx-auto mb-6 flex items-center justify-center text-primary"><img src="images/Leadership/Leadership2.PNG" alt="Swamiji 1" class="w-48 h-48 rounded-full mb-8 object-cover border-4 border-gold shadow-inner"></div>
+                            <div class="w-48 h-48 bg-offwhite rounded-full mx-auto mb-6 flex items-center justify-center text-primary"><img src="images/Leadership/Leadership2.png" alt="Swamiji 1" class="w-48 h-48 rounded-full mb-8 object-cover border-4 border-gold shadow-inner"></div>
                             <h3 class="font-bold text-lg text-forest mb-2">Shri. Nanjegowda Nanjunda</h3>
                             <p class="text-12px font-bold text-primary mb-4 uppercase tracking-widest">Founder President</p>
                             <p class="text-xs text-gray-500 leading-relaxed">The driving force behind the brigade's initial structure.</p>
@@ -709,6 +707,8 @@
 
     <script>
 
+        
+
         // Popup Logic
         const dialog = document.getElementById('myPopup');
         document.getElementById('openBtn').onclick = () => dialog.showModal();
@@ -716,19 +716,42 @@
 
         // Navigation Logic
         function navigateTo(pageId) {
+            // ✅ Add this line (IMPORTANT)
+            history.pushState({ page: pageId }, '', '#' + pageId);
+
             // Hide all pages
             document.querySelectorAll('.page-content').forEach(page => {
                 page.classList.add('section-hidden');
             });
+
             // Show requested page
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.remove('section-hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+
             // Close mobile menu
             document.getElementById('mobileMenu').classList.remove('mobile-menu-active');
         }
+
+        window.onpopstate = function (event) {
+            const pageId = (event.state && event.state.page) || location.hash.replace('#', '') || 'home';
+
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.add('section-hidden');
+            });
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('section-hidden');
+            }
+        };
+
+        window.onload = function () {
+            const pageId = location.hash.replace('#', '') || 'home';
+            navigateTo(pageId);
+        };
 
         // Mobile Menu Toggle
         document.getElementById('menuToggle').addEventListener('click', () => {
@@ -862,17 +885,7 @@
         }
 
         // INITIALIZE
-        window.onload = () => {
-            renderSlider('international');
-            renderSlider('social');
-            autoPlay('international');
-            autoPlay('social');
-
-            // Keyboard listeners
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeLightbox();
-            });
-        };
+        
     </script>
 </body>
 </html>
